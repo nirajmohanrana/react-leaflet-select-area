@@ -1,5 +1,6 @@
 {
   "name": "react-leaflet-select-area",
+  "description": "A simple React component for selecting an area on a Leaflet map.",
   "version": "1.0.0",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
