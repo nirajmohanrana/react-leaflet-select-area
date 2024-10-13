@@ -1,11 +1,11 @@
-import BasicExample from "./components/examples/basic/basic-example";
-import Basic from "./components/examples/basic/basic.mdx";
+import GettingStarted from "./components/examples/1-getting-started/getting-started.mdx";
+import GettingStartedExample from "./components/examples/1-getting-started/getting-started-eg";
 
 export const examples = [
   {
-    name: "Basic",
+    name: "Getting Started",
     path: "/",
-    description: <Basic />,
-    example: <BasicExample />,
+    description: <GettingStarted />,
+    example: <GettingStartedExample />,
   },
 ];

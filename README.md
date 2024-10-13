@@ -43,7 +43,7 @@ const MyMap = () => {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
       <SelectArea
-        onSelect={(bounds) => {
+        onBoundsChange={(bounds) => {
           console.log('Selected Area:', bounds);
         }}
       />
@@ -68,17 +68,7 @@ The `SelectArea` component allows users to select a rectangular area on the map.
 
 | Prop     | Type     | Description                                         |
 |----------|----------|-----------------------------------------------------|
-| `onBoundsChange` | Function | Callback function that gets triggered when the selected area changes.
-
-#### Example
-
-```tsx
-<SelectArea
-  onSelect={(bounds) => {
-    console.log('Selected area bounds:', bounds);
-  }}
-/>
-```
+| `onBoundsChange` | Function | Callback function that gets triggered when the selected area changes. |
 
 ## Contributing
 
