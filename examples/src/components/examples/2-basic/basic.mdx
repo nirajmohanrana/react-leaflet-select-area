@@ -1,20 +1,12 @@
 import CodeBlock from "@/components/code-block";
 
-# react-leaflet-select-area
+# Basic Example
 
-A React component for selecting custom areas on a Leaflet map. This component is built using React and Leaflet to enable easy area selection functionality for maps.
-
-## Getting Started
+In this example, we'll demonstrate how to use the `SelectArea` component to select an area on a Leaflet map and log the selected bounds to the console.
 
 To get started with `react-leaflet-select-area`, follow these steps:
 
-1. Install the package:
-
-<CodeBlock language="bash">
-{`npm install leaflet react-leaflet react-leaflet-select-area`}
-</CodeBlock>
-
-2. Import the necessary components:
+1. Import the necessary components:
 
 <CodeBlock language="javascript">
 {`import { MapContainer, TileLayer } from "react-leaflet";
@@ -22,7 +14,7 @@ import { SelectArea } from "react-leaflet-select-area";
 import "leaflet/dist/leaflet.css";`}
 </CodeBlock>
 
-3. Add the `SelectArea` component to your map:
+2. Add the `SelectArea` component to your map:
 
 <CodeBlock language="javascript" highlightedLines="11">
 {`<MapContainer
@@ -35,10 +27,9 @@ import "leaflet/dist/leaflet.css";`}
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      <SelectArea />
-</MapContainer>
-`}
+      <SelectArea onBoundsChange={(bounds) => console.log(bounds)} />
+</MapContainer>`}
 </CodeBlock>
 
-
-4. Hold down the `ctrl` key and click and drag to select an area on the map.
+Check console for the selected bounds.
+    

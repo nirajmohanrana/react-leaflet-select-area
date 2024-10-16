@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/drawer";
 import { Separator } from "@/components/ui/separator";
 import Code from "./code";
-import { ModeToggle } from "./mode-toggle";
 import Share from "./share";
 
 const Header = () => {
@@ -42,7 +41,6 @@ const Header = () => {
       </Drawer>
 
       <Share />
-      <ModeToggle />
     </header>
   );
 };

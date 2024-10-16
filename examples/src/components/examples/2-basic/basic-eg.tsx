@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer } from "react-leaflet";
 import { SelectArea } from "react-leaflet-select-area";
 
-const GettingStartedExample = () => {
+const BasicExample = () => {
   return (
     <MapContainer
       center={[51.505, -0.09]}
@@ -13,9 +13,9 @@ const GettingStartedExample = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       />
-      <SelectArea />
+      <SelectArea onBoundsChange={(bounds) => console.log(bounds)} />
     </MapContainer>
   );
 };
 
-export default GettingStartedExample;
+export default BasicExample;

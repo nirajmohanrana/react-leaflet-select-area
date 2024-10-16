@@ -5,21 +5,21 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { examples } from "@/examples";
 import { useLocation } from "react-router-dom";
+import { buttonVariants } from "@/components/ui/button";
+import { Icons } from "@/components/icons";
 
 export function ExampleLayout() {
   const location = useLocation();
 
-  // Find the current example based on the location
   const currentExample = examples.find(
     (example) => example.path === location.pathname
   );
 
-  // Update the document title only if currentExample is defined
   useEffect(() => {
     if (currentExample) {
       document.title = `${currentExample.name} | Select Area`;
     }
-  }, [currentExample]); // Depend on currentExample to update the title
+  }, [currentExample]);
 
   if (!currentExample) {
     return <div>Example not found!</div>;
@@ -32,7 +32,19 @@ export function ExampleLayout() {
 
         <main className="grid flex-1 gap-4 overflow-auto p-4 md:grid-cols-2 lg:grid-cols-3">
           <div className="prose lg:prose-lg dark:prose-invert order-last sm:order-first">
-            <div className="flex items-center justify-end">
+            <div className="flex items-center justify-end gap-2">
+              <a
+                href={currentExample.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={buttonVariants({
+                  size: "icon",
+                  variant: "ghost",
+                })}
+              >
+                <Icons.gitHub className="h-5 w-5" />
+                <span className="sr-only">GitHub</span>
+              </a>
               <Combobox />
             </div>
 
