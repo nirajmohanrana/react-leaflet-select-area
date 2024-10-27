@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer } from "react-leaflet";
-import { SelectArea } from "react-leaflet-select-area";
+import SelectArea from "#components/select-area";
 
 const GettingStartedExample = () => {
   return (

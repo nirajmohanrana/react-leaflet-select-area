@@ -22,7 +22,9 @@ export default function SelectArea({
 
   // Notify parent component of bounds change
   useEffect(() => {
-    onBoundsChange(rectangleBounds);
+    if (rectangleBounds !== null) {
+      onBoundsChange(rectangleBounds);
+    }
   }, [rectangleBounds, onBoundsChange]);
 
   return (
