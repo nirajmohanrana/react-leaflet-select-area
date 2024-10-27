@@ -1,5 +1,4 @@
 import React from "react";
-import { Analytics } from "@vercel/analytics/react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { MDXProvider } from "@mdx-js/react";
 import { examples } from "./examples";
@@ -24,7 +23,6 @@ const App = () => {
           ))}
         </Routes>
       </MDXProvider>
-      <Analytics/>
     </Router>
   );
 };
