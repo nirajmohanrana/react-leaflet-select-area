@@ -4,6 +4,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { examples } from "./examples";
 import { ExampleLayout } from "./layout/example-layout";
 import "leaflet/dist/leaflet.css";
+import { Analytics } from "@vercel/analytics/react";
 
 const components = {
   em: (props: React.HTMLAttributes<HTMLElement>) => <i {...props} />,
@@ -23,6 +24,7 @@ const App = () => {
           ))}
         </Routes>
       </MDXProvider>
+      <Analytics />
     </Router>
   );
 };
