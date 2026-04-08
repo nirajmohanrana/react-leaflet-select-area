@@ -1,0 +1,44 @@
+import CodeBlock from "@/components/code-block"
+
+# Basic Example
+
+This example shows how to keep the selection button outside the map while still sharing the same selection state with `SelectArea`. Even with an external button, desktop users can still use `Ctrl + mouse drag` directly on the map.
+
+## Custom Controller
+
+<CodeBlock language="tsx">
+{`import { SelectArea, useSelectArea } from "react-leaflet-select-area";
+
+export default function Example() {
+  const controller = useSelectArea();
+
+  return (
+    <>
+      <button type="button" onClick={controller.toggleSelectionMode}>
+        Select area
+      </button>
+
+      <MapContainer center={[51.505, -0.09]} zoom={13} className="h-full w-full">
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; OpenStreetMap contributors'
+        />
+        <SelectArea controller={controller} keepRectangle />
+      </MapContainer>
+    </>
+  );
+}`}
+</CodeBlock>
+
+## Why Use The Hook
+
+- put the trigger in your own app header, drawer, or toolbar
+- sync selection mode with other UI state
+- clear existing bounds or show them in your own status panel
+
+## Notes
+
+- `keepRectangle` is for app developers to control whether the last valid selection stays visible.
+- `onBoundsChange` only fires after a valid drag completes.
+- Tapping without a real drag does not emit bounds.
+- Desktop `Ctrl + mouse drag` remains available alongside your custom external trigger.

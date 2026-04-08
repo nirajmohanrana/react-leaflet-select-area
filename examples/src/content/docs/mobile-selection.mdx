@@ -1,0 +1,32 @@
+import CodeBlock from "@/components/code-block"
+
+# Mobile Selection
+
+The package now supports explicit touch selection so mobile users do not depend on a keyboard modifier. Desktop users still keep the original `Ctrl + mouse drag` workflow.
+
+## Built-in Control
+
+Enable the built-in Leaflet-style control to give mobile users a direct way to enter selection mode.
+
+<CodeBlock language="tsx">
+{`<SelectArea keepRectangle showControl />`}
+</CodeBlock>
+
+## Interaction Model
+
+1. Tap the built-in control.
+2. Drag once to define the area.
+3. Release to confirm.
+4. The map returns to normal pan mode automatically.
+
+## Recommended Usage
+
+- Use the built-in control when you want the easiest setup.
+- Pair it with `keepRectangle` when users need to review the selected area after the drag completes.
+- Use an external controller if the selection trigger needs to live in an app toolbar rather than inside the map.
+
+## Edge Cases
+
+- A tap without a real drag is ignored.
+- Canceling the active mode exits selection without emitting bounds.
+- Desktop `Ctrl + mouse drag` remains available even when the built-in control is enabled.

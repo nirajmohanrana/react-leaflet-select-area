@@ -1,0 +1,43 @@
+import CodeBlock from "@/components/code-block"
+
+# Getting Started
+
+`react-leaflet-select-area` supports both desktop `Ctrl + mouse drag` selection and a built-in touch-friendly control for mobile users.
+
+## Install
+
+<CodeBlock language="bash">
+{`npm install react-leaflet-select-area leaflet react react-dom react-leaflet`}
+</CodeBlock>
+
+## Basic Usage
+
+<CodeBlock language="tsx">
+{`import { MapContainer, TileLayer } from "react-leaflet";
+import { SelectArea } from "react-leaflet-select-area";
+import "leaflet/dist/leaflet.css";
+
+export default function Example() {
+  return (
+    <MapContainer center={[51.505, -0.09]} zoom={13} className="h-full w-full">
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; OpenStreetMap contributors'
+      />
+      <SelectArea keepRectangle showControl />
+    </MapContainer>
+  );
+}`}
+</CodeBlock>
+
+Desktop users can immediately hold `Ctrl` and drag with the mouse inside the map. Mobile and touch users can use the built-in control when `showControl` is enabled.
+
+## Interaction Model
+
+1. Desktop users can hold `Ctrl` and mouse drag to select immediately.
+2. Touch and mobile users can tap the built-in control and drag once.
+3. The map returns to normal pan mode automatically after a valid selection.
+
+## Recommended First Step
+
+If you want the best default experience, start with the built-in control. You can move to an external controller later if your app needs its own toolbar or custom selection triggers.

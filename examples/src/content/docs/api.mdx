@@ -1,0 +1,59 @@
+import CodeBlock from "@/components/code-block"
+
+# API Reference
+
+The package exports one component and one hook:
+
+<CodeBlock language="ts">
+{`import { SelectArea, useSelectArea } from "react-leaflet-select-area";`}
+</CodeBlock>
+
+## `SelectArea`
+
+`SelectArea` mounts inside a `MapContainer` and binds the selection workflow to the active Leaflet map.
+
+### Props
+
+- `onBoundsChange?: (bounds) => void`
+- `keepRectangle?: boolean`
+- `showControl?: boolean`
+- `controlPosition?: ControlPosition`
+- `options?: Omit<RectangleProps, "bounds">`
+- `controller?: SelectAreaController`
+
+### Behavior
+
+- Desktop users can hold `Ctrl` and mouse drag.
+- Mobile and touch users can use the built-in one-shot control when `showControl` is enabled.
+- Valid selections call `onBoundsChange`.
+- Tap-only interactions do not emit bounds.
+
+## `useSelectArea`
+
+Use the hook when your app needs to trigger selection mode from outside the map.
+
+<CodeBlock language="ts">
+{`const controller = useSelectArea();
+
+controller.enterSelectionMode();
+controller.exitSelectionMode();
+controller.toggleSelectionMode();
+controller.clearSelection();`}
+</CodeBlock>
+
+### Controller State
+
+- `startPoint`
+- `endPoint`
+- `rectangleBounds`
+- `isDrawing`
+- `isSelectionMode`
+
+### Controller Actions
+
+- `enterSelectionMode`
+- `exitSelectionMode`
+- `toggleSelectionMode`
+- `clearSelection`
+
+The controller object can be passed into `SelectArea` through the `controller` prop to synchronize internal map behavior with your own UI.

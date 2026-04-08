@@ -1,0 +1,45 @@
+import CodeBlock from "@/components/code-block"
+
+# Installation
+
+Use `react-leaflet-select-area` when you already have a React Leaflet map and you need rectangular selection without bringing in a larger drawing toolkit. On desktop, the default interaction is `Ctrl + mouse drag`. On touch devices, you can expose the built-in control or drive selection from your own UI.
+
+## Package Install
+
+<CodeBlock language="bash">
+{`pnpm add react-leaflet-select-area leaflet react react-dom react-leaflet`}
+</CodeBlock>
+
+## Required Imports
+
+<CodeBlock language="tsx">
+{`import { MapContainer, TileLayer } from "react-leaflet";
+import { SelectArea } from "react-leaflet-select-area";
+import "leaflet/dist/leaflet.css";`}
+</CodeBlock>
+
+## Default Interaction
+
+- Desktop users can hold `Ctrl` and drag with the mouse without adding any extra UI.
+- Mobile users should enable `showControl` or provide an external controller button.
+
+## Peer Environment
+
+- React `19`
+- React DOM `19`
+- React Leaflet `5`
+- Leaflet `1.9`
+
+## Local Docs Workflow
+
+This repository uses a pnpm workspace. The docs app resolves the local library package from the repo, so changes in `src/` are reflected without publishing to npm first.
+
+<CodeBlock language="bash">
+{`pnpm install
+pnpm build
+pnpm dev:examples`}
+</CodeBlock>
+
+## Vercel Notes
+
+The examples app is deployed from the repo workspace, not as a standalone package. Build from the repository root so the local workspace dependency is available during install and compile.

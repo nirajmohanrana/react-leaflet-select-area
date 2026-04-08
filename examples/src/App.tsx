@@ -1,32 +1,21 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { MDXProvider } from "@mdx-js/react";
-import { examples } from "./examples";
-import { ExampleLayout } from "./layout/example-layout";
-import "leaflet/dist/leaflet.css";
-import { Analytics } from "@vercel/analytics/react";
+import { createRouter, RouterProvider } from "@tanstack/react-router"
 
-const components = {
-  em: (props: React.HTMLAttributes<HTMLElement>) => <i {...props} />,
-};
+import { routeTree } from "./routeTree.gen"
 
-const App = () => {
-  return (
-    <Router>
-      <MDXProvider components={components}>
-        <Routes>
-          {examples.map((example) => (
-            <Route
-              key={example.path}
-              path={example.path}
-              element={<ExampleLayout />}
-            />
-          ))}
-        </Routes>
-      </MDXProvider>
-      <Analytics />
-    </Router>
-  );
-};
+const router = createRouter({
+  routeTree,
+  defaultPreload: "intent",
+  scrollRestoration: true,
+})
 
-export default App;
+declare module "@tanstack/react-router" {
+  interface Register {
+    router: typeof router
+  }
+}
+
+export function App() {
+  return <RouterProvider router={router} />
+}
+
+export default App

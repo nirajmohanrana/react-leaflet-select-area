@@ -1,0 +1,36 @@
+import CodeBlock from "@/components/code-block"
+
+# External Controller
+
+Use the external controller pattern when the selection trigger belongs to your app UI rather than the map itself.
+
+## Hook Pattern
+
+<CodeBlock language="tsx">
+{`const controller = useSelectArea();
+
+return (
+  <>
+    <ToolbarButton onClick={controller.toggleSelectionMode} />
+    <MapContainer center={[51.505, -0.09]} zoom={13}>
+      <SelectArea controller={controller} keepRectangle />
+    </MapContainer>
+  </>
+);`}
+</CodeBlock>
+
+## When To Use It
+
+- survey and inspection workflows
+- admin dashboards with a shared action bar
+- apps where selection mode must be paired with other form state
+
+## Shared Behavior
+
+The controller and the built-in control use the same underlying selection state. If you render both at once, they stay synchronized.
+
+## Practical Advice
+
+- Use `toggleSelectionMode` for a single button.
+- Use `clearSelection` when your workflow has an explicit reset step.
+- Keep your own selection summary close to the trigger so users can see what area is currently active.
