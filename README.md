@@ -2,6 +2,10 @@
 
 A React component for selecting custom areas on a Leaflet map. It supports desktop shortcut selection and an explicit selection mode for touch and mobile users.
 
+- npm: [react-leaflet-select-area](https://www.npmjs.com/package/react-leaflet-select-area)
+- docs: [react-leaflet-select-area.vercel.app](https://react-leaflet-select-area.vercel.app/)
+- source: [github.com/nirajmohanrana/react-leaflet-select-area](https://github.com/nirajmohanrana/react-leaflet-select-area)
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -112,6 +116,7 @@ const MyMap = () => {
 ### Props
 
 - `onBoundsChange`: A callback function that gets triggered when the selected area changes.
+- `options`: Leaflet path styling for the selection rectangle.
 - `keepRectangle`: Keeps the completed rectangle visible after selection.
 - `showControl`: Renders a Leaflet-style select-area control inside the map.
 - `controlPosition`: Sets the built-in control position.
@@ -127,7 +132,8 @@ The `SelectArea` component allows users to select a rectangular area on the map.
 
 | Prop | Type | Description |
 |----------|----------|-----------------------------------------------------|
-| `onBoundsChange` | `(bounds) => void` | Called after a valid selection completes. |
+| `onBoundsChange` | `(bounds \| null) => void` | Called when the persisted selection changes, including when it is cleared. |
+| `options` | `PathOptions` | Leaflet path styling for the selection rectangle. |
 | `keepRectangle` | `boolean` | Keeps the completed rectangle visible. |
 | `showControl` | `boolean` | Shows the built-in Leaflet-style select button. |
 | `controlPosition` | `ControlPosition` | Placement for the built-in control. |

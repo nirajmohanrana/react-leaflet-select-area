@@ -1,7 +1,8 @@
 import path from "path"
 import mdx from "@mdx-js/rollup"
+import babel from "@rolldown/plugin-babel"
 import tailwindcss from "@tailwindcss/vite"
-import react from "@vitejs/plugin-react"
+import react, { reactCompilerPreset } from "@vitejs/plugin-react"
 import { TanStackRouterVite } from "@tanstack/router-plugin/vite"
 import { defineConfig } from "vite"
 
@@ -13,10 +14,9 @@ export default defineConfig({
       autoCodeSplitting: true,
     }),
     mdx(),
-    react({
-      babel: {
-        plugins: ["babel-plugin-react-compiler"],
-      },
+    react(),
+    babel({
+      presets: [reactCompilerPreset()],
     }),
     tailwindcss(),
   ],
@@ -29,12 +29,21 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          leaflet: ["leaflet", "react-leaflet"],
-          syntax: [
-            "react-syntax-highlighter",
-            "react-syntax-highlighter/dist/esm/styles/prism",
-          ],
+        manualChunks(id) {
+          if (id.includes("react-syntax-highlighter")) {
+            return "syntax"
+          }
+
+          if (
+            id.includes(`${path.sep}leaflet${path.sep}`) ||
+            id.includes(`${path.sep}react-leaflet${path.sep}`) ||
+            id.includes("/leaflet/") ||
+            id.includes("/react-leaflet/")
+          ) {
+            return "leaflet"
+          }
+
+          return undefined
         },
       },
     },

@@ -12,9 +12,14 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ExamplesIndexRouteImport } from './routes/examples.index'
 import { Route as DocsIndexRouteImport } from './routes/docs.index'
+import { Route as ExamplesRoutePlanningRouteImport } from './routes/examples.route-planning'
+import { Route as ExamplesPropertySearchRouteImport } from './routes/examples.property-search'
 import { Route as ExamplesMarkerGroupMoveRouteImport } from './routes/examples.marker-group-move'
 import { Route as ExamplesMapSectionDownloadRouteImport } from './routes/examples.map-section-download'
+import { Route as ExamplesHeatmapDensityRouteImport } from './routes/examples.heatmap-density'
 import { Route as ExamplesGeoFencingRouteImport } from './routes/examples.geo-fencing'
+import { Route as ExamplesDeliveryZoneRouteImport } from './routes/examples.delivery-zone'
+import { Route as ExamplesBatchGeocodingRouteImport } from './routes/examples.batch-geocoding'
 import { Route as DocsStylingRouteImport } from './routes/docs.styling'
 import { Route as DocsMobileSelectionRouteImport } from './routes/docs.mobile-selection'
 import { Route as DocsInstallationRouteImport } from './routes/docs.installation'
@@ -37,6 +42,16 @@ const DocsIndexRoute = DocsIndexRouteImport.update({
   path: '/docs/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ExamplesRoutePlanningRoute = ExamplesRoutePlanningRouteImport.update({
+  id: '/examples/route-planning',
+  path: '/examples/route-planning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamplesPropertySearchRoute = ExamplesPropertySearchRouteImport.update({
+  id: '/examples/property-search',
+  path: '/examples/property-search',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExamplesMarkerGroupMoveRoute = ExamplesMarkerGroupMoveRouteImport.update({
   id: '/examples/marker-group-move',
   path: '/examples/marker-group-move',
@@ -48,9 +63,24 @@ const ExamplesMapSectionDownloadRoute =
     path: '/examples/map-section-download',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ExamplesHeatmapDensityRoute = ExamplesHeatmapDensityRouteImport.update({
+  id: '/examples/heatmap-density',
+  path: '/examples/heatmap-density',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ExamplesGeoFencingRoute = ExamplesGeoFencingRouteImport.update({
   id: '/examples/geo-fencing',
   path: '/examples/geo-fencing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamplesDeliveryZoneRoute = ExamplesDeliveryZoneRouteImport.update({
+  id: '/examples/delivery-zone',
+  path: '/examples/delivery-zone',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExamplesBatchGeocodingRoute = ExamplesBatchGeocodingRouteImport.update({
+  id: '/examples/batch-geocoding',
+  path: '/examples/batch-geocoding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocsStylingRoute = DocsStylingRouteImport.update({
@@ -92,9 +122,14 @@ export interface FileRoutesByFullPath {
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/mobile-selection': typeof DocsMobileSelectionRoute
   '/docs/styling': typeof DocsStylingRoute
+  '/examples/batch-geocoding': typeof ExamplesBatchGeocodingRoute
+  '/examples/delivery-zone': typeof ExamplesDeliveryZoneRoute
   '/examples/geo-fencing': typeof ExamplesGeoFencingRoute
+  '/examples/heatmap-density': typeof ExamplesHeatmapDensityRoute
   '/examples/map-section-download': typeof ExamplesMapSectionDownloadRoute
   '/examples/marker-group-move': typeof ExamplesMarkerGroupMoveRoute
+  '/examples/property-search': typeof ExamplesPropertySearchRoute
+  '/examples/route-planning': typeof ExamplesRoutePlanningRoute
   '/docs/': typeof DocsIndexRoute
   '/examples/': typeof ExamplesIndexRoute
 }
@@ -106,9 +141,14 @@ export interface FileRoutesByTo {
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/mobile-selection': typeof DocsMobileSelectionRoute
   '/docs/styling': typeof DocsStylingRoute
+  '/examples/batch-geocoding': typeof ExamplesBatchGeocodingRoute
+  '/examples/delivery-zone': typeof ExamplesDeliveryZoneRoute
   '/examples/geo-fencing': typeof ExamplesGeoFencingRoute
+  '/examples/heatmap-density': typeof ExamplesHeatmapDensityRoute
   '/examples/map-section-download': typeof ExamplesMapSectionDownloadRoute
   '/examples/marker-group-move': typeof ExamplesMarkerGroupMoveRoute
+  '/examples/property-search': typeof ExamplesPropertySearchRoute
+  '/examples/route-planning': typeof ExamplesRoutePlanningRoute
   '/docs': typeof DocsIndexRoute
   '/examples': typeof ExamplesIndexRoute
 }
@@ -121,9 +161,14 @@ export interface FileRoutesById {
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/mobile-selection': typeof DocsMobileSelectionRoute
   '/docs/styling': typeof DocsStylingRoute
+  '/examples/batch-geocoding': typeof ExamplesBatchGeocodingRoute
+  '/examples/delivery-zone': typeof ExamplesDeliveryZoneRoute
   '/examples/geo-fencing': typeof ExamplesGeoFencingRoute
+  '/examples/heatmap-density': typeof ExamplesHeatmapDensityRoute
   '/examples/map-section-download': typeof ExamplesMapSectionDownloadRoute
   '/examples/marker-group-move': typeof ExamplesMarkerGroupMoveRoute
+  '/examples/property-search': typeof ExamplesPropertySearchRoute
+  '/examples/route-planning': typeof ExamplesRoutePlanningRoute
   '/docs/': typeof DocsIndexRoute
   '/examples/': typeof ExamplesIndexRoute
 }
@@ -137,9 +182,14 @@ export interface FileRouteTypes {
     | '/docs/installation'
     | '/docs/mobile-selection'
     | '/docs/styling'
+    | '/examples/batch-geocoding'
+    | '/examples/delivery-zone'
     | '/examples/geo-fencing'
+    | '/examples/heatmap-density'
     | '/examples/map-section-download'
     | '/examples/marker-group-move'
+    | '/examples/property-search'
+    | '/examples/route-planning'
     | '/docs/'
     | '/examples/'
   fileRoutesByTo: FileRoutesByTo
@@ -151,9 +201,14 @@ export interface FileRouteTypes {
     | '/docs/installation'
     | '/docs/mobile-selection'
     | '/docs/styling'
+    | '/examples/batch-geocoding'
+    | '/examples/delivery-zone'
     | '/examples/geo-fencing'
+    | '/examples/heatmap-density'
     | '/examples/map-section-download'
     | '/examples/marker-group-move'
+    | '/examples/property-search'
+    | '/examples/route-planning'
     | '/docs'
     | '/examples'
   id:
@@ -165,9 +220,14 @@ export interface FileRouteTypes {
     | '/docs/installation'
     | '/docs/mobile-selection'
     | '/docs/styling'
+    | '/examples/batch-geocoding'
+    | '/examples/delivery-zone'
     | '/examples/geo-fencing'
+    | '/examples/heatmap-density'
     | '/examples/map-section-download'
     | '/examples/marker-group-move'
+    | '/examples/property-search'
+    | '/examples/route-planning'
     | '/docs/'
     | '/examples/'
   fileRoutesById: FileRoutesById
@@ -180,9 +240,14 @@ export interface RootRouteChildren {
   DocsInstallationRoute: typeof DocsInstallationRoute
   DocsMobileSelectionRoute: typeof DocsMobileSelectionRoute
   DocsStylingRoute: typeof DocsStylingRoute
+  ExamplesBatchGeocodingRoute: typeof ExamplesBatchGeocodingRoute
+  ExamplesDeliveryZoneRoute: typeof ExamplesDeliveryZoneRoute
   ExamplesGeoFencingRoute: typeof ExamplesGeoFencingRoute
+  ExamplesHeatmapDensityRoute: typeof ExamplesHeatmapDensityRoute
   ExamplesMapSectionDownloadRoute: typeof ExamplesMapSectionDownloadRoute
   ExamplesMarkerGroupMoveRoute: typeof ExamplesMarkerGroupMoveRoute
+  ExamplesPropertySearchRoute: typeof ExamplesPropertySearchRoute
+  ExamplesRoutePlanningRoute: typeof ExamplesRoutePlanningRoute
   DocsIndexRoute: typeof DocsIndexRoute
   ExamplesIndexRoute: typeof ExamplesIndexRoute
 }
@@ -210,6 +275,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DocsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/examples/route-planning': {
+      id: '/examples/route-planning'
+      path: '/examples/route-planning'
+      fullPath: '/examples/route-planning'
+      preLoaderRoute: typeof ExamplesRoutePlanningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/examples/property-search': {
+      id: '/examples/property-search'
+      path: '/examples/property-search'
+      fullPath: '/examples/property-search'
+      preLoaderRoute: typeof ExamplesPropertySearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/examples/marker-group-move': {
       id: '/examples/marker-group-move'
       path: '/examples/marker-group-move'
@@ -224,11 +303,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExamplesMapSectionDownloadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/examples/heatmap-density': {
+      id: '/examples/heatmap-density'
+      path: '/examples/heatmap-density'
+      fullPath: '/examples/heatmap-density'
+      preLoaderRoute: typeof ExamplesHeatmapDensityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/examples/geo-fencing': {
       id: '/examples/geo-fencing'
       path: '/examples/geo-fencing'
       fullPath: '/examples/geo-fencing'
       preLoaderRoute: typeof ExamplesGeoFencingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/examples/delivery-zone': {
+      id: '/examples/delivery-zone'
+      path: '/examples/delivery-zone'
+      fullPath: '/examples/delivery-zone'
+      preLoaderRoute: typeof ExamplesDeliveryZoneRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/examples/batch-geocoding': {
+      id: '/examples/batch-geocoding'
+      path: '/examples/batch-geocoding'
+      fullPath: '/examples/batch-geocoding'
+      preLoaderRoute: typeof ExamplesBatchGeocodingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/docs/styling': {
@@ -284,9 +384,14 @@ const rootRouteChildren: RootRouteChildren = {
   DocsInstallationRoute: DocsInstallationRoute,
   DocsMobileSelectionRoute: DocsMobileSelectionRoute,
   DocsStylingRoute: DocsStylingRoute,
+  ExamplesBatchGeocodingRoute: ExamplesBatchGeocodingRoute,
+  ExamplesDeliveryZoneRoute: ExamplesDeliveryZoneRoute,
   ExamplesGeoFencingRoute: ExamplesGeoFencingRoute,
+  ExamplesHeatmapDensityRoute: ExamplesHeatmapDensityRoute,
   ExamplesMapSectionDownloadRoute: ExamplesMapSectionDownloadRoute,
   ExamplesMarkerGroupMoveRoute: ExamplesMarkerGroupMoveRoute,
+  ExamplesPropertySearchRoute: ExamplesPropertySearchRoute,
+  ExamplesRoutePlanningRoute: ExamplesRoutePlanningRoute,
   DocsIndexRoute: DocsIndexRoute,
   ExamplesIndexRoute: ExamplesIndexRoute,
 }

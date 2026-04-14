@@ -52,8 +52,8 @@ export default function GeoFencingExample({
           </div>
         ) : (
           <div className="border-b border-border/70 bg-background/85 px-3 py-2 text-xs text-muted-foreground">
-            Tap the built-in map control to arm a temporary fence, then draw once
-            to confirm the boundary.
+            Tap the built-in map control to arm a temporary fence, then draw
+            once to confirm the boundary.
           </div>
         )}
         <MapContainer
@@ -114,7 +114,9 @@ export default function GeoFencingExample({
             <div className="mb-1 text-xs font-medium tracking-[0.24em] text-muted-foreground uppercase">
               Bounds
             </div>
-            <div className="text-sm text-foreground">{formatBounds(bounds)}</div>
+            <div className="text-sm text-foreground">
+              {formatBounds(bounds)}
+            </div>
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">

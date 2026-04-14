@@ -14,18 +14,18 @@ The package exports one component and one hook:
 
 ### Props
 
-- `onBoundsChange?: (bounds) => void`
+- `onBoundsChange?: (bounds: SelectAreaBounds | null) => void`
 - `keepRectangle?: boolean`
 - `showControl?: boolean`
 - `controlPosition?: ControlPosition`
-- `options?: Omit<RectangleProps, "bounds">`
+- `options?: PathOptions`
 - `controller?: SelectAreaController`
 
 ### Behavior
 
 - Desktop users can hold `Ctrl` and mouse drag.
 - Mobile and touch users can use the built-in one-shot control when `showControl` is enabled.
-- Valid selections call `onBoundsChange`.
+- Valid selections call `onBoundsChange`, and clearing the persisted selection calls `onBoundsChange(null)`.
 - Tap-only interactions do not emit bounds.
 
 ## `useSelectArea`

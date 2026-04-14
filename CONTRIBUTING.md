@@ -2,6 +2,10 @@
 
 We welcome contributions of all kinds!
 
+- npm: [react-leaflet-select-area](https://www.npmjs.com/package/react-leaflet-select-area)
+- docs: [react-leaflet-select-area.vercel.app](https://react-leaflet-select-area.vercel.app/)
+- source: [github.com/nirajmohanrana/react-leaflet-select-area](https://github.com/nirajmohanrana/react-leaflet-select-area)
+
 ## Issues
 
 Please open an issue before submitting a PR.

@@ -1,7 +1,7 @@
 {
   "name": "react-leaflet-select-area",
   "description": "A simple React component for selecting an area on a Leaflet map.",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
@@ -28,12 +28,16 @@
     "type": "git",
     "url": "git+https://github.com/nirajmohanrana/react-leaflet-select-area.git"
   },
+  "homepage": "https://react-leaflet-select-area.vercel.app/",
+  "bugs": {
+    "url": "https://github.com/nirajmohanrana/react-leaflet-select-area/issues"
+  },
   "author": "Niraj Rana",
   "license": "MIT",
   "dependencies": {
     "leaflet": "^1.9.4",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5",
     "react-leaflet": "^5.0.0"
   },
   "devDependencies": {

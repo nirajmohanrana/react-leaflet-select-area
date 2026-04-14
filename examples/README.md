@@ -3,6 +3,10 @@
 This app powers the interactive docs and live examples for
 `react-leaflet-select-area`.
 
+- npm: [react-leaflet-select-area](https://www.npmjs.com/package/react-leaflet-select-area)
+- docs: [react-leaflet-select-area.vercel.app](https://react-leaflet-select-area.vercel.app/)
+- source: [github.com/nirajmohanrana/react-leaflet-select-area](https://github.com/nirajmohanrana/react-leaflet-select-area)
+
 ## Stack
 
 - Vite

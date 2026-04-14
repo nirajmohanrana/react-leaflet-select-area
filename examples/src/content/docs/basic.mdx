@@ -39,6 +39,6 @@ export default function Example() {
 ## Notes
 
 - `keepRectangle` is for app developers to control whether the last valid selection stays visible.
-- `onBoundsChange` only fires after a valid drag completes.
+- `onBoundsChange` fires when the persisted selection changes, including when `clearSelection()` removes it.
 - Tapping without a real drag does not emit bounds.
 - Desktop `Ctrl + mouse drag` remains available alongside your custom external trigger.

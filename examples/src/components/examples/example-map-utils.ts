@@ -5,7 +5,7 @@ import type { SelectAreaBounds } from "react-leaflet-select-area"
 
 export type MarkerItem = {
   id: number
-  label: string
+  label?: string
   position: [number, number]
 }
 

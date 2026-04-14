@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { Rectangle, useMap } from "react-leaflet";
 import type {
   ControlPosition,
@@ -6,8 +6,8 @@ import type {
   LeafletEventHandlerFn,
   LeafletKeyboardEvent,
   LeafletMouseEvent,
+  PathOptions,
 } from "leaflet";
-import type { RectangleProps } from "react-leaflet";
 import SelectAreaControl from "./select-area-control";
 import { useSelectArea } from "../hooks/useSelectArea";
 import type {
@@ -17,7 +17,7 @@ import type {
 
 interface SelectAreaProps {
   onBoundsChange?: (bounds: SelectAreaBounds | null) => void;
-  options?: Omit<RectangleProps, "bounds">;
+  options?: PathOptions;
   keepRectangle?: boolean;
   controller?: SelectAreaController;
   showControl?: boolean;
@@ -35,6 +35,7 @@ export default function SelectArea({
   const internalController = useSelectArea();
   const controller = controllerProp ?? internalController;
   const map = useMap();
+  const hasMountedRef = useRef(false);
   const {
     startPoint,
     endPoint,
@@ -49,11 +50,13 @@ export default function SelectArea({
     setShortcutPressed,
   } = controller;
 
-  // Notify parent component of bounds change
   useEffect(() => {
-    if (rectangleBounds !== null) {
-      onBoundsChange(rectangleBounds);
+    if (!hasMountedRef.current) {
+      hasMountedRef.current = true;
+      return;
     }
+
+    onBoundsChange(rectangleBounds);
   }, [rectangleBounds, onBoundsChange]);
 
   useEffect(() => {

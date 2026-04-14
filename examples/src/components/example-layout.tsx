@@ -49,8 +49,8 @@ export default function ExampleLayout({
         </div>
 
         <section className="mt-8">
-          <Card className="overflow-hidden">
-            <CardHeader>
+          <Card className="gap-0 py-0 overflow-hidden">
+            <CardHeader className="px-6 pt-5 pb-4">
               <CardTitle>Live Preview</CardTitle>
             </CardHeader>
             <Separator />

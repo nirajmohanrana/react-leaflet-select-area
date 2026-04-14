@@ -15,6 +15,16 @@ import MarkerGroupMoveDescription from "@/components/examples/marker-group-move-
 import MarkerGroupMoveExample from "@/components/examples/marker-group-move-example"
 import GeoFencingDescription from "@/components/examples/geo-fencing-description"
 import GeoFencingExample from "@/components/examples/geo-fencing-example"
+import BatchGeocodingDescription from "@/components/examples/batch-geocoding-description"
+import BatchGeocodingExample from "@/components/examples/batch-geocoding-example"
+import DeliveryZoneDescription from "@/components/examples/delivery-zone-description"
+import DeliveryZoneExample from "@/components/examples/delivery-zone-example"
+import PropertySearchDescription from "@/components/examples/property-search-description"
+import PropertySearchExample from "@/components/examples/property-search-example"
+import RoutePlanningDescription from "@/components/examples/route-planning-description"
+import RoutePlanningExample from "@/components/examples/route-planning-example"
+import HeatmapDensityDescription from "@/components/examples/heatmap-density-description"
+import HeatmapDensityExample from "@/components/examples/heatmap-density-example"
 
 export type SitePage = {
   path: string
@@ -33,6 +43,7 @@ export type DocsPage = SitePage & {
   kind: "docs"
   description: ReactNode
   preview?: ReactNode
+  previewClassName?: string
 }
 
 export type ExamplePage = SitePage & {
@@ -80,7 +91,7 @@ export const docsPages: DocsPage[] = [
     title: "API Reference",
     shortTitle: "API",
     summary:
-      "Review the SelectArea props, controller contract, and hook surface available in v1.1.0.",
+      "Review the SelectArea props, controller contract, and hook surface available in v2.0.0.",
     sourceHref: `${githubBase}/content/docs/api.mdx`,
     description: <ApiDoc />,
   },
@@ -127,10 +138,71 @@ export const docsPages: DocsPage[] = [
     sourceHref: `${githubBase}/content/docs/styling.mdx`,
     description: <StylingDoc />,
     preview: <GeoFencingExample />,
+    previewClassName: "h-[34rem]",
   },
 ]
 
 export const examplePages: ExamplePage[] = [
+  {
+    kind: "example",
+    path: "/examples/batch-geocoding",
+    title: "Batch Geocoding",
+    shortTitle: "Geocoding",
+    summary:
+      "Select addresses within a geographic area and process them in batch for geocoding or data operations.",
+    sourceHref: `${githubBase}/components/examples/batch-geocoding-example.tsx`,
+    description: <BatchGeocodingDescription />,
+    preview: <BatchGeocodingExample />,
+    tags: ["geocoding", "batch-processing", "addresses"],
+  },
+  {
+    kind: "example",
+    path: "/examples/delivery-zone",
+    title: "Delivery Zone Management",
+    shortTitle: "Zones",
+    summary:
+      "Create and manage multiple color-coded delivery zones by drawing rectangular areas on the map.",
+    sourceHref: `${githubBase}/components/examples/delivery-zone-example.tsx`,
+    description: <DeliveryZoneDescription />,
+    preview: <DeliveryZoneExample />,
+    tags: ["zones", "logistics", "delivery"],
+  },
+  {
+    kind: "example",
+    path: "/examples/property-search",
+    title: "Property Search",
+    shortTitle: "Property",
+    summary:
+      "Filter real estate properties by drawing an area on the map combined with price, beds, and square footage filters.",
+    sourceHref: `${githubBase}/components/examples/property-search-example.tsx`,
+    description: <PropertySearchDescription />,
+    preview: <PropertySearchExample />,
+    tags: ["real-estate", "filters", "search"],
+  },
+  {
+    kind: "example",
+    path: "/examples/route-planning",
+    title: "Route Planning",
+    shortTitle: "Route",
+    summary:
+      "Filter route stops by drawing an area on the map. The route recalculates based on the selected stops.",
+    sourceHref: `${githubBase}/components/examples/route-planning-example.tsx`,
+    description: <RoutePlanningDescription />,
+    preview: <RoutePlanningExample />,
+    tags: ["routing", "stops", "navigation"],
+  },
+  {
+    kind: "example",
+    path: "/examples/heatmap-density",
+    title: "Heatmap Density Analysis",
+    shortTitle: "Heatmap",
+    summary:
+      "Analyze data density within a selected area with circle markers and real-time statistics.",
+    sourceHref: `${githubBase}/components/examples/heatmap-density-example.tsx`,
+    description: <HeatmapDensityDescription />,
+    preview: <HeatmapDensityExample />,
+    tags: ["analytics", "density", "visualization"],
+  },
   {
     kind: "example",
     path: "/examples/marker-group-move",

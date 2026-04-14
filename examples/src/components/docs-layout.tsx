@@ -4,6 +4,7 @@ import { getPageNeighbors, type DocsPage } from "@/content/pages"
 import ContentShell from "@/components/content-shell"
 import PagePager from "@/components/page-pager"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { cn } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 
 type DocsLayoutProps = {
@@ -38,19 +39,26 @@ export default function DocsLayout({
 
         {preview ? (
           <section className="mt-8">
-            <Card className="overflow-hidden">
-              <CardHeader>
+            <Card className="gap-0 py-0 overflow-hidden">
+              <CardHeader className="px-6 pt-5 pb-4">
                 <CardTitle>Preview</CardTitle>
               </CardHeader>
               <Separator />
               <CardContent className="p-0">
-                <div className="h-[22rem] bg-muted/40">{preview}</div>
+                <div
+                  className={cn(
+                    "h-[22rem] bg-muted/40",
+                    page.previewClassName
+                  )}
+                >
+                  {preview}
+                </div>
               </CardContent>
             </Card>
           </section>
         ) : null}
 
-        <article className="prose prose-slate mt-10 max-w-none text-sm prose-headings:font-heading prose-headings:font-semibold prose-pre:rounded-3xl prose-pre:border prose-pre:border-border/70 prose-pre:bg-slate-950 prose-code:before:hidden prose-code:after:hidden dark:prose-invert">
+        <article className="prose mt-10 max-w-none text-sm prose-slate dark:prose-invert prose-headings:font-heading prose-headings:font-semibold prose-code:before:hidden prose-code:after:hidden prose-pre:rounded-3xl prose-pre:border prose-pre:border-border/70 prose-pre:bg-slate-950">
           {description}
         </article>
 
