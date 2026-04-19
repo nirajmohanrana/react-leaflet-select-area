@@ -2,10 +2,16 @@ import CodeBlock from "@/components/code-block"
 
 # API Reference
 
-The package exports one component and one hook:
+The package exports one component, one hook, and associated TypeScript types:
 
 <CodeBlock language="ts">
-{`import { SelectArea, useSelectArea } from "react-leaflet-select-area";`}
+{`import {
+  SelectArea,
+  useSelectArea,
+  type SelectAreaBounds,
+  type SelectAreaController,
+  type SelectAreaTrigger,
+} from "react-leaflet-select-area";`}
 </CodeBlock>
 
 ## `SelectArea`
@@ -48,12 +54,18 @@ controller.clearSelection();`}
 - `rectangleBounds`
 - `isDrawing`
 - `isSelectionMode`
+- `isShortcutPressed`
 
 ### Controller Actions
 
+- `beginSelection`
+- `updateSelection`
+- `completeSelection`
+- `cancelSelection`
+- `clearSelection`
 - `enterSelectionMode`
 - `exitSelectionMode`
 - `toggleSelectionMode`
-- `clearSelection`
+- `setShortcutPressed`
 
 The controller object can be passed into `SelectArea` through the `controller` prop to synchronize internal map behavior with your own UI.

@@ -7,7 +7,9 @@ This example shows how to keep the selection button outside the map while still 
 ## Custom Controller
 
 <CodeBlock language="tsx">
-{`import { SelectArea, useSelectArea } from "react-leaflet-select-area";
+{`import { MapContainer, TileLayer } from "react-leaflet";
+import { SelectArea, useSelectArea } from "react-leaflet-select-area";
+import "leaflet/dist/leaflet.css";
 
 export default function Example() {
   const controller = useSelectArea();

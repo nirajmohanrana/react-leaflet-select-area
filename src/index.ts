@@ -3,4 +3,5 @@ export {
   useSelectArea,
   type SelectAreaBounds,
   type SelectAreaController,
+  type SelectAreaTrigger,
 } from "./hooks/useSelectArea";

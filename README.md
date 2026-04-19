@@ -132,7 +132,7 @@ The `SelectArea` component allows users to select a rectangular area on the map.
 
 | Prop | Type | Description |
 |----------|----------|-----------------------------------------------------|
-| `onBoundsChange` | `(bounds \| null) => void` | Called when the persisted selection changes, including when it is cleared. |
+| `onBoundsChange` | `(bounds: SelectAreaBounds \| null) => void` | Called when the persisted selection changes, including when it is cleared. |
 | `options` | `PathOptions` | Leaflet path styling for the selection rectangle. |
 | `keepRectangle` | `boolean` | Keeps the completed rectangle visible. |
 | `showControl` | `boolean` | Shows the built-in Leaflet-style select button. |
