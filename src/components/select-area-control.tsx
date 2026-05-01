@@ -54,10 +54,15 @@ export default function SelectAreaControl({
     rootRef.current = createRoot(container);
 
     return () => {
-      rootRef.current?.unmount();
+      const root = rootRef.current;
+
       control.remove();
       controlRef.current = null;
       rootRef.current = null;
+
+      window.setTimeout(() => {
+        root?.unmount();
+      }, 0);
     };
   }, [map, position]);
 

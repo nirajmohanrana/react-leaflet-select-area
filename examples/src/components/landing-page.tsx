@@ -77,7 +77,7 @@ export default function LandingPage() {
             </CardHeader>
             <Separator />
             <CardContent className="p-0">
-              <div className="h-[62vh] min-h-[32rem] bg-muted/40 lg:h-[44rem]">
+              <div className="h-[76svh] min-h-[34rem] bg-muted/40 md:h-[62vh] md:min-h-[32rem] lg:h-[44rem]">
                 <GeoFencingExample controlMode="external" />
               </div>
             </CardContent>

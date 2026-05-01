@@ -1,10 +1,10 @@
 {
   "name": "examples",
   "private": true,
-  "version": "2.0.1",
+  "version": "2.0.2",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build && tsc -b",
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{ts,tsx}\"",

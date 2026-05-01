@@ -93,8 +93,8 @@ export default function PropertySearchExample() {
   }
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="grid gap-3 border-b border-border/70 bg-background/85 p-3 lg:grid-cols-[auto_auto_1fr] lg:items-center">
+    <div className="flex h-full min-h-0 flex-col">
+      <div className="grid grid-cols-2 gap-2 border-b border-border/70 bg-background/85 p-3 sm:grid-cols-[auto_auto_1fr] sm:items-center">
         <Button
           variant={controller.isSelectionMode ? "secondary" : "outline"}
           size="sm"
@@ -107,7 +107,7 @@ export default function PropertySearchExample() {
           <Home className="size-4" />
           Clear
         </Button>
-        <div className="flex items-center gap-4 text-xs text-muted-foreground">
+        <div className="col-span-2 flex min-w-0 items-center gap-4 text-xs text-muted-foreground sm:col-span-1">
           <div className="flex items-center gap-1">
             <DollarSign className="size-4" />
             <span>{filteredProperties.length} properties</span>
@@ -120,8 +120,8 @@ export default function PropertySearchExample() {
         </div>
       </div>
 
-      <div className="flex flex-1 overflow-hidden">
-        <div className="w-80 flex-shrink-0 overflow-y-auto border-r border-border/70 bg-background">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden md:flex-row">
+        <div className="order-2 max-h-64 w-full flex-shrink-0 overflow-y-auto border-t border-border/70 bg-background md:order-1 md:max-h-none md:w-80 md:border-t-0 md:border-r">
           <div className="border-b border-border/70 p-3">
             <div className="flex items-center gap-2 text-sm font-medium mb-3">
               <Filter className="size-4" />
@@ -236,7 +236,7 @@ export default function PropertySearchExample() {
         <MapContainer
           center={INITIAL_CENTER}
           zoom={12}
-          className="h-full w-full flex-1"
+          className="order-1 h-[20rem] min-h-[20rem] w-full flex-none md:order-2 md:h-full md:min-h-0 md:flex-1"
           zoomControl={false}
         >
           <TileLayer
