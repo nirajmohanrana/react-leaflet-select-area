@@ -33,7 +33,7 @@ export default function AppHeader({ sourceHref }: AppHeaderProps) {
           <div className="min-w-0">
             <div className="truncate text-sm font-semibold">Select Area</div>
             <div className="hidden text-xs text-muted-foreground sm:block">
-              Docs and examples for v2.0.0
+              Docs and examples for v2.0.2
             </div>
           </div>
         </Link>

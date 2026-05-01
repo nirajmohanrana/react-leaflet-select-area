@@ -91,7 +91,7 @@ export const docsPages: DocsPage[] = [
     title: "API Reference",
     shortTitle: "API",
     summary:
-      "Review the SelectArea props, controller contract, and hook surface available in v2.0.0.",
+      "Review the SelectArea props, controller contract, and hook surface available in v2.0.2.",
     sourceHref: `${githubBase}/content/docs/api.mdx`,
     description: <ApiDoc />,
   },
