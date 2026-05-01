@@ -2,8 +2,6 @@ import { useEffect, useRef } from "react";
 import { Rectangle, useMap } from "react-leaflet";
 import type {
   ControlPosition,
-  LeafletEvent,
-  LeafletEventHandlerFn,
   LeafletKeyboardEvent,
   LeafletMouseEvent,
   PathOptions,
@@ -36,6 +34,7 @@ export default function SelectArea({
   const controller = controllerProp ?? internalController;
   const map = useMap();
   const hasMountedRef = useRef(false);
+  const isTouchDrawingRef = useRef(false);
   const {
     startPoint,
     endPoint,
@@ -49,6 +48,8 @@ export default function SelectArea({
     cancelSelection,
     setShortcutPressed,
   } = controller;
+  const shouldLockMapGestures =
+    isDrawing || isSelectionMode || isShortcutPressed;
 
   useEffect(() => {
     if (!hasMountedRef.current) {
@@ -101,54 +102,18 @@ export default function SelectArea({
       completeSelection(event.latlng, event.containerPoint);
     };
 
-    const isMapPointerEvent = (
-      event: LeafletEvent
-    ): event is LeafletMouseEvent => {
-      return "latlng" in event && "containerPoint" in event;
-    };
-
-    const handleTouchStart: LeafletEventHandlerFn = (event: LeafletEvent) => {
-      if (!isMapPointerEvent(event)) {
-        return;
-      }
-
-      handlePointerStart(event);
-    };
-
-    const handleTouchMove: LeafletEventHandlerFn = (event: LeafletEvent) => {
-      if (!isMapPointerEvent(event)) {
-        return;
-      }
-
-      handlePointerMove(event);
-    };
-
-    const handleTouchEnd: LeafletEventHandlerFn = (event: LeafletEvent) => {
-      if (!isMapPointerEvent(event)) {
-        return;
-      }
-
-      handlePointerEnd(event);
-    };
-
     map.on("keydown", setShortcutState);
     map.on("keyup", setShortcutState);
     map.on("mousedown", handlePointerStart);
-    map.on("touchstart", handleTouchStart);
     map.on("mousemove", handlePointerMove);
-    map.on("touchmove", handleTouchMove);
     map.on("mouseup", handlePointerEnd);
-    map.on("touchend", handleTouchEnd);
 
     return () => {
       map.off("keydown", setShortcutState);
       map.off("keyup", setShortcutState);
       map.off("mousedown", handlePointerStart);
-      map.off("touchstart", handleTouchStart);
       map.off("mousemove", handlePointerMove);
-      map.off("touchmove", handleTouchMove);
       map.off("mouseup", handlePointerEnd);
-      map.off("touchend", handleTouchEnd);
     };
   }, [
     beginSelection,
@@ -162,13 +127,142 @@ export default function SelectArea({
   ]);
 
   useEffect(() => {
-    if (isDrawing || isSelectionMode || isShortcutPressed) {
+    if (shouldLockMapGestures) {
       map.dragging.disable();
       return;
     }
 
     map.dragging.enable();
-  }, [isDrawing, isSelectionMode, isShortcutPressed, map]);
+  }, [map, shouldLockMapGestures]);
+
+  useEffect(() => {
+    if (!shouldLockMapGestures) {
+      return;
+    }
+
+    const container = map.getContainer();
+    const previousTouchAction = container.style.touchAction;
+    const previousOverscrollBehavior = container.style.overscrollBehavior;
+
+    const preventScroll = (event: TouchEvent) => {
+      if (event.cancelable) {
+        event.preventDefault();
+      }
+    };
+
+    const getTouchPoint = (touch: Touch) => {
+      const pointerEvent = touch as unknown as MouseEvent;
+
+      return {
+        latlng: map.mouseEventToLatLng(pointerEvent),
+        containerPoint: map.mouseEventToContainerPoint(pointerEvent),
+      };
+    };
+
+    const handleTouchStart = (event: TouchEvent) => {
+      const canStartSelection = isSelectionMode || isShortcutPressed;
+
+      if (!canStartSelection) {
+        return;
+      }
+
+      if (event.touches.length > 1) {
+        cancelSelection();
+        isTouchDrawingRef.current = false;
+        return;
+      }
+
+      const touch = event.touches[0];
+
+      if (!touch) {
+        return;
+      }
+
+      preventScroll(event);
+      const { latlng, containerPoint } = getTouchPoint(touch);
+      isTouchDrawingRef.current = true;
+      beginSelection(
+        latlng,
+        containerPoint,
+        isSelectionMode ? "explicit" : "shortcut"
+      );
+    };
+
+    const handleTouchMove = (event: TouchEvent) => {
+      if (!isTouchDrawingRef.current) {
+        return;
+      }
+
+      if (event.touches.length !== 1) {
+        cancelSelection();
+        isTouchDrawingRef.current = false;
+        return;
+      }
+
+      const touch = event.touches[0];
+
+      if (!touch) {
+        return;
+      }
+
+      preventScroll(event);
+      const { latlng, containerPoint } = getTouchPoint(touch);
+      updateSelection(latlng, containerPoint);
+    };
+
+    const handleTouchEnd = (event: TouchEvent) => {
+      if (!isTouchDrawingRef.current) {
+        return;
+      }
+
+      const touch = event.changedTouches[0];
+
+      if (!touch) {
+        isTouchDrawingRef.current = false;
+        completeSelection();
+        return;
+      }
+
+      preventScroll(event);
+      const { latlng, containerPoint } = getTouchPoint(touch);
+      isTouchDrawingRef.current = false;
+      completeSelection(latlng, containerPoint);
+    };
+
+    const handleTouchCancel = () => {
+      isTouchDrawingRef.current = false;
+      cancelSelection();
+    };
+
+    container.style.touchAction = "none";
+    container.style.overscrollBehavior = "contain";
+    container.addEventListener("touchstart", handleTouchStart, {
+      passive: false,
+    });
+    container.addEventListener("touchmove", handleTouchMove, {
+      passive: false,
+    });
+    container.addEventListener("touchend", handleTouchEnd, { passive: false });
+    container.addEventListener("touchcancel", handleTouchCancel);
+
+    return () => {
+      container.style.touchAction = previousTouchAction;
+      container.style.overscrollBehavior = previousOverscrollBehavior;
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchmove", handleTouchMove);
+      container.removeEventListener("touchend", handleTouchEnd);
+      container.removeEventListener("touchcancel", handleTouchCancel);
+    };
+  }, [
+    beginSelection,
+    cancelSelection,
+    completeSelection,
+    isSelectionMode,
+    isShortcutPressed,
+    map,
+    shouldLockMapGestures,
+    updateSelection,
+  ]);
 
   return (
     <>
