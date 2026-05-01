@@ -74,8 +74,8 @@ export default function BatchGeocodingExample() {
   const selectedCount = addresses.filter((a) => a.selected).length
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="grid gap-3 border-b border-border/70 bg-background/85 p-3 lg:grid-cols-[auto_auto_auto_1fr] lg:items-center">
+    <div className="flex h-full min-h-0 flex-col">
+      <div className="grid grid-cols-2 gap-2 border-b border-border/70 bg-background/85 p-3 sm:grid-cols-[auto_auto_auto_1fr] sm:items-center">
         <Button
           variant={controller.isSelectionMode ? "secondary" : "outline"}
           size="sm"
@@ -101,12 +101,12 @@ export default function BatchGeocodingExample() {
           )}
           Geocode ({selectedCount})
         </Button>
-        <div className="flex items-center gap-2">
+        <div className="col-span-2 flex min-w-0 items-center gap-2 sm:col-span-1">
           <Input
             placeholder="Search addresses..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="h-8 max-w-[200px]"
+            className="h-8 w-full sm:max-w-[200px]"
           />
         </div>
       </div>
@@ -116,8 +116,8 @@ export default function BatchGeocodingExample() {
         Geocode to process them.
       </div>
 
-      <div className="flex flex-1 overflow-hidden">
-        <div className="w-72 flex-shrink-0 overflow-y-auto border-r border-border/70 bg-background p-3">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden md:flex-row">
+        <div className="order-2 max-h-56 w-full flex-shrink-0 overflow-y-auto border-t border-border/70 bg-background p-3 md:order-1 md:max-h-none md:w-72 md:border-t-0 md:border-r">
           <div className="space-y-2">
             <div className="text-xs font-medium text-muted-foreground">
               Addresses ({filteredAddresses.length})
@@ -141,7 +141,7 @@ export default function BatchGeocodingExample() {
         <MapContainer
           center={INITIAL_CENTER}
           zoom={15}
-          className="h-full w-full flex-1"
+          className="order-1 h-[20rem] min-h-[20rem] w-full flex-none md:order-2 md:h-full md:min-h-0 md:flex-1"
           zoomControl={false}
         >
           <TileLayer

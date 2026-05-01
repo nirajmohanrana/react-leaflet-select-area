@@ -73,8 +73,8 @@ export default function DeliveryZoneExample() {
   getBoundsMetrics(currentBounds)
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="grid gap-3 border-b border-border/70 bg-background/85 p-3 lg:grid-cols-[auto_auto_1fr_auto] lg:items-center">
+    <div className="flex h-full min-h-0 flex-col">
+      <div className="grid grid-cols-2 gap-2 border-b border-border/70 bg-background/85 p-3 sm:grid-cols-[auto_auto_1fr_auto] sm:items-center">
         <Button
           variant={controller.isSelectionMode ? "secondary" : "outline"}
           size="sm"
@@ -87,12 +87,12 @@ export default function DeliveryZoneExample() {
           <Trash2 className="size-4" />
           Clear all
         </Button>
-        <div className="flex items-center gap-2">
+        <div className="col-span-2 flex min-w-0 items-center gap-2 sm:col-span-1">
           <Input
             placeholder="Zone name..."
             value={zoneName}
             onChange={(e) => setZoneName(e.target.value)}
-            className="h-8 w-40"
+            className="h-8 min-w-0 flex-1 sm:w-40 sm:flex-none"
             disabled={!currentBounds}
           />
           <Button
@@ -104,7 +104,7 @@ export default function DeliveryZoneExample() {
             Add zone
           </Button>
         </div>
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground sm:justify-end">
           <Package className="size-4" />
           <span>{zones.length} zones</span>
         </div>
@@ -115,8 +115,8 @@ export default function DeliveryZoneExample() {
         name and save it.
       </div>
 
-      <div className="flex flex-1 overflow-hidden">
-        <div className="w-64 flex-shrink-0 overflow-y-auto border-r border-border/70 bg-background p-3">
+      <div className="flex min-h-0 flex-1 flex-col overflow-hidden md:flex-row">
+        <div className="order-2 max-h-52 w-full flex-shrink-0 overflow-y-auto border-t border-border/70 bg-background p-3 md:order-1 md:max-h-none md:w-64 md:border-t-0 md:border-r">
           <div className="space-y-2">
             <div className="text-xs font-medium text-muted-foreground">
               Delivery Zones ({zones.length})
@@ -155,7 +155,7 @@ export default function DeliveryZoneExample() {
         <MapContainer
           center={INITIAL_CENTER}
           zoom={13}
-          className="h-full w-full flex-1"
+          className="order-1 h-[20rem] min-h-[20rem] w-full flex-none md:order-2 md:h-full md:min-h-0 md:flex-1"
           zoomControl={false}
         >
           <TileLayer

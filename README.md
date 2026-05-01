@@ -2,9 +2,9 @@
 
 A React component for selecting custom areas on a Leaflet map. It supports desktop shortcut selection and an explicit selection mode for touch and mobile users.
 
-- npm: [react-leaflet-select-area](https://www.npmjs.com/package/react-leaflet-select-area)
-- docs: [react-leaflet-select-area.vercel.app](https://react-leaflet-select-area.vercel.app/)
+- npm: [npmjs.com/package/react-leaflet-select-area](https://www.npmjs.com/package/react-leaflet-select-area)
 - source: [github.com/nirajmohanrana/react-leaflet-select-area](https://github.com/nirajmohanrana/react-leaflet-select-area)
+- docs: [react-leaflet-select-area.vercel.app](https://react-leaflet-select-area.vercel.app/)
 
 ## Table of Contents
 

@@ -3,6 +3,7 @@ import { Link, useRouterState } from "@tanstack/react-router"
 import { docsPages, examplePages } from "@/content/pages"
 import ShareButton from "@/components/share-button"
 import SourceLinkButton from "@/components/source-link-button"
+import NpmLinkButton from "@/components/npm-link-button"
 import MobileNav from "@/components/mobile-nav"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
@@ -12,6 +13,9 @@ type AppHeaderProps = {
 }
 
 export default function AppHeader({ sourceHref }: AppHeaderProps) {
+  const repositoryHref = "https://github.com/rowinvanamsterdam/react-leaflet-select-area"
+  const effectiveSourceHref = sourceHref ?? repositoryHref
+
   const pathname = useRouterState({
     select: (state) => state.location.pathname,
   })
@@ -52,13 +56,17 @@ export default function AppHeader({ sourceHref }: AppHeaderProps) {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          {sourceHref ? <SourceLinkButton href={sourceHref} compact /> : null}
+          <NpmLinkButton
+            href="https://www.npmjs.com/package/react-leaflet-select-area"
+            compact
+          />
+          <SourceLinkButton href={effectiveSourceHref} compact />
           <ShareButton />
         </div>
 
         <div className="ml-auto md:hidden">
           <MobileNav
-            sourceHref={sourceHref}
+            sourceHref={effectiveSourceHref}
             docsPages={docsPages}
             examplePages={examplePages}
           />

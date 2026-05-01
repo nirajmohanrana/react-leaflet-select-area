@@ -55,7 +55,9 @@ export default function ExampleLayout({
             </CardHeader>
             <Separator />
             <CardContent className="p-0">
-              <div className="h-[60vh] min-h-[28rem] bg-muted/40">{preview}</div>
+              <div className="h-[76svh] min-h-[34rem] bg-muted/40 md:h-[60vh] md:min-h-[28rem]">
+                {preview}
+              </div>
             </CardContent>
           </Card>
         </section>

@@ -15,6 +15,7 @@ import {
 import { Separator } from "@/components/ui/separator"
 import ShareButton from "@/components/share-button"
 import SourceLinkButton from "@/components/source-link-button"
+import NpmLinkButton from "@/components/npm-link-button"
 
 type MobileNavProps = {
   sourceHref?: string
@@ -39,14 +40,14 @@ export default function MobileNav({
           <span className="sr-only">Open navigation</span>
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="max-h-[85vh]">
-        <DrawerHeader>
+      <DrawerContent className="max-h-[calc(100svh-1rem)] overflow-hidden">
+        <DrawerHeader className="shrink-0">
           <DrawerTitle>Navigate</DrawerTitle>
           <DrawerDescription>
             Jump between docs, examples, and the package overview.
           </DrawerDescription>
         </DrawerHeader>
-        <div className="space-y-4 px-4 pb-6">
+        <div className="min-h-0 space-y-4 overflow-y-auto overscroll-contain px-4 pb-6">
           <div className="grid gap-2">
             <DrawerClose asChild>
               <Button
@@ -114,6 +115,9 @@ export default function MobileNav({
             <>
               <Separator />
               <div className="flex gap-2">
+                <NpmLinkButton
+                  href="https://www.npmjs.com/package/react-leaflet-select-area"
+                />
                 {sourceHref ? <SourceLinkButton href={sourceHref} /> : null}
                 <ShareButton />
               </div>
