@@ -13,7 +13,7 @@ type AppHeaderProps = {
 }
 
 export default function AppHeader({ sourceHref }: AppHeaderProps) {
-  const repositoryHref = "https://github.com/rowinvanamsterdam/react-leaflet-select-area"
+  const repositoryHref = "https://github.com/nirajmohanrana/react-leaflet-select-area"
   const effectiveSourceHref = sourceHref ?? repositoryHref
 
   const pathname = useRouterState({
